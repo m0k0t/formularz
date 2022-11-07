@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl_PL">
+   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+      <title>Dane</title>
+         <script type = "text/javascript">
+         function validate() {
+         var text;
+            if( document.formularz.name.value == "" ) {
+              text = "Imie nie moze byc puste";
+               document.getElementById("demo").innerHTML = text;
+               document.formularz.name.focus() ;
+               return false;
+            }
+            if( document.formularz.email.value == "" ) {
+              text = "Mail nie moze byc pusty";
+               document.getElementById("demo").innerHTML = text;
+               document.formularz.email.focus() ;
+               return false;
+            }
+       var emailID = document.formularz.email.value;
+       atposn = emailID.indexOf("@");
+       dotposn = emailID.lastIndexOf(".");
+       if (atposn < 1 || ( dotposn - atposn < 2 )) {
+       text = "Wpisz poprawnego maila";
+       document.getElementById("demo").innerHTML = text;
+       document.formularz.email.focus() ;
+       return false;
+     }
+            if( document.formularz.phone.value == "" || isNaN( document.formularz.phone.value ) ||
+               document.formularz.phone.value.length != 9 ) {
+               text = "Wpisz poprawny 9 cyfrowy numer telefonu";
+               document.getElementById("demo").innerHTML = text;
+               document.formularz.phone.focus() ;
+               return false;
+            }
+            if( document.formularz.subject.value == "0" ) {
+               text = "Podaj swoja specjalizacje";
+               document.getElementById("demo").innerHTML = text;
+               return false;
+            }
+            return( true );
+         }
+      </script>
+   </head>
+   <body>
+      <form action = "" name = "formularz" onsubmit = "return(validate());">
+        <h1 align="center">Rejestracja uzytkownika</H1>
+         <table align="center" cellspacing = "3" cellpadding = "3" border = "3">
+            <tr>
+               <td align = "right">Imie</td>
+               <td><input type = "text" name = "name" /></td>
+            </tr>
+            <tr>
+               <td align = "right">E-mail</td>
+               <td><input type = "text" name = "email" /></td>
+            </tr>
+            <tr>
+               <td align = "right">Nr Tel</td>
+               <td><input type = "text" name = "phone" /></td>
+            </tr>
+            <tr>
+               <td align = "right">Specjalizacja</td>
+               <td>
+                  <select name = "subject">
+                     <option value = "0" selected>Wybierz</option>
+                     <option value = "1">Python</option>
+                     <option value = "2">HTML</option>
+                     <option value = "3">SQL</option>
+                     <option value = "4">Java</option>
+                  </select>
+               </td>
+            </tr>
+         </table>
+         <p id="demo" style="color:red; text-align:center"></p>
+   <div style="text-align:center"><input type = "submit" value = "Submit" /></div>
+      </form>
+   </body>
+</html>
